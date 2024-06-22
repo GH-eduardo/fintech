@@ -7,7 +7,7 @@ import { Trade, TradeDocument } from './trade.schema';
 export class TradesService {
     constructor(@InjectModel(Trade.name) private tradeModel: Model<TradeDocument>) {}
 
-    async createTrade(trade: Trade): Promise<Trade> {
+    async createTrade(trade: Trade): Promise<TradeDocument> {
         const createdTrade = new this.tradeModel(trade);
         return createdTrade.save();
     }
