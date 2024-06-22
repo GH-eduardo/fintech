@@ -1,6 +1,6 @@
 import { Module } from '@nestjs/common';
 import { MongooseModule } from '@nestjs/mongoose';
-import { Trade, TradeSchema } from './trade.schema';
+import { Trade, TradeSchema } from './schemas/trade.schema';
 import { TradesController } from './trades.controller';
 import { TradesService } from './trades.service';
 

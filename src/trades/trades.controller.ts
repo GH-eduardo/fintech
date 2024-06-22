@@ -1,33 +1,35 @@
 import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
 import { TradesService } from './trades.service';
-import { Trade } from './trade.schema';
+// import { Trade } from './schemas/trade.schema';
+import { CreateTradeDto } from './dto/create-trade.dto';
+import { UpdateTradeDto } from './dto/update-trade.dto';
 
 @Controller('trades')
 export class TradesController {
   constructor(private readonly tradesService: TradesService) {}
 
   @Post()
-  async create(@Body() trade: Trade) {
-    return this.tradesService.createTrade(trade);
+  create(@Body() createTradeDto: CreateTradeDto) {
+    return this.tradesService.createTrade(createTradeDto);
   }
 
   @Get()
-  async findAll() {
+  findAll() {
     return this.tradesService.getAllTrades();
   }
 
   @Get(':id')
-  async findOne(@Param('id') id: string) {
+  findOne(@Param('id') id: string) {
     return this.tradesService.getTradeById(id);
   }
 
   @Put(':id')
-  async update(@Param('id') id: string, @Body() trade: Trade) {
-    return this.tradesService.updateTrade(id, trade);
+  update(@Param('id') id: string, @Body() updateTradeDto: UpdateTradeDto) {
+    return this.tradesService.updateTrade(id, updateTradeDto);
   }
 
   @Delete(':id')
-  async delete(@Param('id') id: string) {
+  delete(@Param('id') id: string) {
     return this.tradesService.deleteTrade(id);
   }
 }

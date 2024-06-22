@@ -1,30 +1,32 @@
 import { Injectable } from '@nestjs/common';
+import { CreateTradeDto } from './dto/create-trade.dto';
+import { UpdateTradeDto } from './dto/update-trade.dto';
+import { Trade } from './schemas/trade.schema';
 import { InjectModel } from '@nestjs/mongoose';
 import { Model } from 'mongoose';
-import { Trade, TradeDocument } from './trade.schema';
 
 @Injectable()
 export class TradesService {
-    constructor(@InjectModel(Trade.name) private tradeModel: Model<TradeDocument>) {}
+    constructor(@InjectModel(Trade.name) private tradeModel: Model<Trade>) {}
 
-    async createTrade(trade: Trade): Promise<TradeDocument> {
-        const createdTrade = new this.tradeModel(trade);
-        return createdTrade.save();
+    createTrade(createTradeDto: CreateTradeDto) {
+        const createdTrade = this.tradeModel.create(createTradeDto);
+        return createdTrade;
     }
 
-    async getAllTrades(): Promise<Trade[]> {
-        return this.tradeModel.find().exec();
+    getAllTrades() {
+        return this.tradeModel.find();
     }
 
-    async getTradeById(id: string): Promise<Trade | null> {
-        return this.tradeModel.findById(id).exec();
+    getTradeById(id: string) {
+        return this.tradeModel.findById(id);
     }
 
-    async updateTrade(id: string, updatedTrade: Trade): Promise<Trade | null> {
-        return this.tradeModel.findByIdAndUpdate(id, updatedTrade, { new: true }).exec();
+    updateTrade(id: string, updatedTradeDto: UpdateTradeDto) {
+        return `This action updates a #${id} trade`;
     }
 
-    async deleteTrade(id: string): Promise<Trade | null> {
-        return this.tradeModel.findByIdAndDelete(id).exec();
+    deleteTrade(id: string) {
+        return this.tradeModel.findByIdAndDelete(id);
     }
 }
