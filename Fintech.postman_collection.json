@@ -80,7 +80,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"name\": \"pessoa1 alterada\",\r\n  \"email\": \"email@abc\",\r\n  \"password\": \"senha123456\"\r\n}",
+					"raw": "{\r\n    \"password\": \"senha123456\",\r\n    \"balance\": 0,\r\n    \"stocks\": []\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -97,6 +97,27 @@
 					"path": [
 						"users",
 						"66772893cd2d8723d4538825"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "makeDeposit",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/users/66772893cd2d8723d4538825/15000",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"users",
+						"66772893cd2d8723d4538825",
+						"15000"
 					]
 				}
 			},
@@ -129,7 +150,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"userId\": \"66772893cd2d8723d4538825\",\r\n  \"stockSymbol\": \"Petro3\",\r\n  \"quantity\": 200,\r\n  \"price\": 10.50,\r\n  \"tradeType\": \"buy\"\r\n}",
+					"raw": "{\r\n  \"userId\": \"66772893cd2d8723d4538825\",\r\n  \"ticker\": \"Petro4\",\r\n  \"quantity\": 200,\r\n  \"price\": 10.50,\r\n  \"tradeType\": \"buy\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -175,6 +196,55 @@
 				"method": "GET",
 				"header": [],
 				"url": {
+					"raw": "http://localhost:3000/trades/66775db053013652fcdbb749",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"trades",
+						"66775db053013652fcdbb749"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "updateTrade",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"status\": \"closed\",\r\n    \"closing_date\": \"2024-06-22T20:30:00\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:3000/trades/66775db053013652fcdbb749",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"trades",
+						"66775db053013652fcdbb749"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "deleteTrade",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
 					"raw": "http://localhost:3000/trades/6677299bcd2d8723d4538829",
 					"protocol": "http",
 					"host": [
@@ -190,12 +260,22 @@
 			"response": []
 		},
 		{
-			"name": "updateTrade",
+			"name": "buyStock",
 			"request": {
-				"method": "PUT",
-				"header": [],
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer aJ8y3fKhLkFeMh327cqFZU",
+						"type": "text",
+						"disabled": true
+					}
+				],
 				"url": {
-					"raw": "http://localhost:3000/trades/:id",
+					"raw": "http://localhost:3000/trades/66772893cd2d8723d4538825/buy/PETR4/100",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -203,25 +283,22 @@
 					"port": "3000",
 					"path": [
 						"trades",
-						":id"
-					],
-					"variable": [
-						{
-							"key": "id",
-							"value": ""
-						}
+						"66772893cd2d8723d4538825",
+						"buy",
+						"PETR4",
+						"100"
 					]
 				}
 			},
 			"response": []
 		},
 		{
-			"name": "deleteTrade",
+			"name": "sellStock",
 			"request": {
-				"method": "DELETE",
+				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/trades/:id",
+					"raw": "http://localhost:3000/trades/66772893cd2d8723d4538825/sell/PETR4/100",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -229,13 +306,30 @@
 					"port": "3000",
 					"path": [
 						"trades",
-						":id"
+						"66772893cd2d8723d4538825",
+						"sell",
+						"PETR4",
+						"100"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "listStocks",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:3000/trades/listStocks",
+					"protocol": "http",
+					"host": [
+						"localhost"
 					],
-					"variable": [
-						{
-							"key": "id",
-							"value": ""
-						}
+					"port": "3000",
+					"path": [
+						"trades",
+						"listStocks"
 					]
 				}
 			},
