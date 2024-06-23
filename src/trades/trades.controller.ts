@@ -18,6 +18,11 @@ export class TradesController {
     return this.tradesService.getAllTrades();
   }
 
+  @Get('listStocks')
+  listStocks() {
+    return this.tradesService.listStocks();
+  }
+
   @Get(':id')
   findOne(@Param('id') id: string) {
     return this.tradesService.getTradeById(id);
@@ -32,4 +37,15 @@ export class TradesController {
   delete(@Param('id') id: string) {
     return this.tradesService.deleteTrade(id);
   }
+
+  @Get(':userId/buy/:ticker/:quantity')
+  buy(@Param('userId') userId: string, @Param('ticker') ticker: string, @Param('quantity') quantity: number) {
+    return this.tradesService.buyStocks(userId, ticker, quantity);
+  }
+
+  @Get(':userId/sell/:ticker/:quantity')
+  sell(@Param('userId') userId: string, @Param('ticker') ticker: string, @Param('quantity') quantity: number) {
+    return this.tradesService.sellStocks(userId, ticker, quantity);
+  }
+
 }

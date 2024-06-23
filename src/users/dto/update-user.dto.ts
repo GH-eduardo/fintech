@@ -1,6 +1,6 @@
 
 export class UpdateUserDto {
-  readonly name: string;
-  readonly email: string;
   readonly password: string;
+  readonly balance: number;
+  readonly stocks: Array<{name: string, quantity: number, investedValue: number}>;
 }
