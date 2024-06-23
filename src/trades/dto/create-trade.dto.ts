@@ -4,4 +4,5 @@ export class CreateTradeDto {
   quantity: number;
   price: number;
   tradeType: 'buy' | 'sell';
+  date: Date;
 }

@@ -22,8 +22,11 @@ export class TradesService {
         return this.tradeModel.findById(id);
     }
 
-    updateTrade(id: string, updatedTradeDto: UpdateTradeDto) {
-        return `This action updates a #${id} trade`;
+    async updateTrade(id: string, trade: UpdateTradeDto): Promise<Trade> {
+        return await this.tradeModel.findByIdAndUpdate(id, trade, {
+            new: true,
+            runValidators: true,
+        });
     }
 
     deleteTrade(id: string) {

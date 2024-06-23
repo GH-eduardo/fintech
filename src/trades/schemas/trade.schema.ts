@@ -7,7 +7,7 @@ export class Trade extends Document {
   userId: string;
 
   @Prop({ required: true })
-  stockSymbol: string;
+  ticker: string; //ou stock symbol código da ação
 
   @Prop({ required: true })
   quantity: number;
@@ -17,8 +17,15 @@ export class Trade extends Document {
 
   @Prop({ required: true })
   tradeType: 'buy' | 'sell';
+
+  @Prop({ default: 'open'})
+  status: 'open' | 'closed' | 'cancelled';
+
+  @Prop({ default: () => new Date() })
+  creation_date: Date;
+
+  @Prop({ default: null })
+  closing_date: Date;
 }
 
 export const TradeSchema = SchemaFactory.createForClass(Trade);
-
-export type TradeDocument = Trade & Document;

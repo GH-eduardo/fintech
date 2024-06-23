@@ -22,8 +22,11 @@ export class UsersService {
         return this.userModel.findById(id);
     }
 
-    updateUser(id: string, updateUserDto: UpdateUserDto) {
-        return `This action updates a #${id} user`;
+    async updateUser(id: string, user: UpdateUserDto): Promise<User> {
+        return await this.userModel.findByIdAndUpdate(id, user, {
+            new: true,
+            runValidators: true,
+        });
     }
 
     deleteUser(id: string) {

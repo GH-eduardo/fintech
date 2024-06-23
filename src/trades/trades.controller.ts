@@ -1,8 +1,8 @@
 import { Controller, Get, Post, Put, Delete, Body, Param } from '@nestjs/common';
 import { TradesService } from './trades.service';
-// import { Trade } from './schemas/trade.schema';
 import { CreateTradeDto } from './dto/create-trade.dto';
 import { UpdateTradeDto } from './dto/update-trade.dto';
+import { Trade } from './schemas/trade.schema';
 
 @Controller('trades')
 export class TradesController {
@@ -24,8 +24,8 @@ export class TradesController {
   }
 
   @Put(':id')
-  update(@Param('id') id: string, @Body() updateTradeDto: UpdateTradeDto) {
-    return this.tradesService.updateTrade(id, updateTradeDto);
+  async update(@Param('id') id: string, @Body() trade: UpdateTradeDto): Promise<Trade> {
+    return this.tradesService.updateTrade(id, trade);
   }
 
   @Delete(':id')
