@@ -18,13 +18,13 @@ export class Trade extends Document {
   @Prop({ required: true })
   tradeType: 'buy' | 'sell';
 
-  @Prop({ default: 'open'})
+  @Prop({ default: 'closed'})
   status: 'open' | 'closed' | 'cancelled';
 
   @Prop({ default: () => new Date() })
   creation_date: Date;
 
-  @Prop({ default: null })
+  @Prop({ default: () => new Date() })
   closing_date: Date;
 }
 

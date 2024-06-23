@@ -14,8 +14,14 @@ export class TradesService {
     constructor(@InjectModel(Trade.name) private tradeModel: Model<Trade>,
         private httpService: HttpService, private usersService: UsersService) { }
 
-    createTrade(createTradeDto: CreateTradeDto) {
-        const createdTrade = this.tradeModel.create(createTradeDto);
+    async createTrade(createTradeDto: CreateTradeDto) {
+        const createdTrade = await this.tradeModel.create(createTradeDto);
+
+        let userID = createdTrade.userId;
+        let user: User = await this.usersService.getUserById(userID);
+        user.historic.push(createdTrade);
+        await this.usersService.updateUser(userID, user);
+
         return createdTrade;
     }
 
@@ -80,6 +86,13 @@ export class TradesService {
                 user.balance -= totalValue;
                 await this.usersService.updateUser(userId, user);
 
+                await this.createTrade({
+                    userId: userId,
+                    ticker: ticker,
+                    quantity: quantity,
+                    price: price,
+                    tradeType: 'buy'
+                });
                 return `Parabéns ${user.name}! Você comprou ${quantity} ações de ${ticker} por R$ ${totalValue}! seu saldo atual é: R$ ${user.balance}`
             }
         } catch (error) {
@@ -116,6 +129,13 @@ export class TradesService {
             user.balance += totalValue;
             await this.usersService.updateUser(userId, user);
 
+            await this.createTrade({
+                userId: userId,
+                ticker: ticker,
+                quantity: quantity,
+                price: price,
+                tradeType: 'sell'
+            });
             return `Parabéns ${user.name}! Você vendeu ${quantity} ações de ${ticker} por R$ ${totalValue}! seu saldo atual é: R$ ${user.balance}`
         }
         catch (error) {

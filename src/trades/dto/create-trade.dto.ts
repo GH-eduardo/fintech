@@ -1,8 +1,7 @@
 export class CreateTradeDto {
   userId: string;
-  stockSymbol: string;
+  ticker: string;
   quantity: number;
   price: number;
   tradeType: 'buy' | 'sell';
-  date: Date;
 }

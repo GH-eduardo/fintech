@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"name\": \"pessoa3\",\r\n  \"email\": \"email@abcde\",\r\n  \"password\": \"senha123\"\r\n}",
+					"raw": "{\r\n  \"name\": \"pessoa3\",\r\n  \"email\": \"email@ab\", //não pode haver e-mail duplicado\r\n  \"password\": \"senha123\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -59,7 +59,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/users/66772893cd2d8723d4538825",
+					"raw": "http://localhost:3000/users/6678a9de2506d01d3731840f",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -67,7 +67,7 @@
 					"port": "3000",
 					"path": [
 						"users",
-						"66772893cd2d8723d4538825"
+						"6678a9de2506d01d3731840f"
 					]
 				}
 			},
@@ -150,7 +150,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"userId\": \"66772893cd2d8723d4538825\",\r\n  \"ticker\": \"Petro4\",\r\n  \"quantity\": 200,\r\n  \"price\": 10.50,\r\n  \"tradeType\": \"buy\"\r\n}",
+					"raw": "{\r\n  \"userId\": \"6678a9de2506d01d3731840f\",\r\n  \"ticker\": \"Petro4\",\r\n  \"quantity\": 200,\r\n  \"price\": 10.50,\r\n  \"tradeType\": \"buy\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -196,7 +196,7 @@
 				"method": "GET",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/trades/66775db053013652fcdbb749",
+					"raw": "http://localhost:3000/trades/6678aa5d2506d01d37318413",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -204,7 +204,7 @@
 					"port": "3000",
 					"path": [
 						"trades",
-						"66775db053013652fcdbb749"
+						"6678aa5d2506d01d37318413"
 					]
 				}
 			},
@@ -217,7 +217,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n    \"status\": \"closed\",\r\n    \"closing_date\": \"2024-06-22T20:30:00\"\r\n}",
+					"raw": "{\r\n    \"status\": \"cancelled\",\r\n    \"closing_date\": \"2024-06-22T20:30:00\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -225,7 +225,7 @@
 					}
 				},
 				"url": {
-					"raw": "http://localhost:3000/trades/66775db053013652fcdbb749",
+					"raw": "http://localhost:3000/trades/6678aa5d2506d01d37318413",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -233,7 +233,7 @@
 					"port": "3000",
 					"path": [
 						"trades",
-						"66775db053013652fcdbb749"
+						"6678aa5d2506d01d37318413"
 					]
 				}
 			},
