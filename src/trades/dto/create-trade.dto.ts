@@ -5,9 +5,9 @@ export class CreateTradeDto {
   @IsNotEmpty()
   ticker: string;
   @IsInt()
-  @Min(0)
+  @Min(1)
   quantity: number;
-  @Min(0)
+  @Min(0.01)
   price: number;
   tradeType: 'buy' | 'sell';
 }
