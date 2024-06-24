@@ -4,6 +4,7 @@ import { CreateUserDto } from './dto/create-user.dto';
 import { UpdateUserDto } from './dto/update-user.dto';	
 import { User } from './schemas/user.schema';
 import { BadRequestException, NotFoundException } from '@nestjs/common';
+import { NothingFoundException } from 'src/common/exceptions/NothingFoundException';
 
 @Controller('users')
 export class UsersController {
@@ -15,18 +16,30 @@ export class UsersController {
   }
 
   @Get()
-  findAll() {
-    return this.usersService.getAllUsers();
+  async findAll() {
+    const users = await this.usersService.getAllUsers();
+    if (users.length === 0) {
+      throw new NothingFoundException();
+    }
+    return users;
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.usersService.getUserById(id);
+  async findOne(@Param('id') id: string) {
+    const user = await this.usersService.getUserById(id);
+    if (!user) {
+      throw new NotFoundException(`User with id ${id} not found!`);
+    }
+    return user;
   }
 
   @Put(':id')
   async update(@Param('id') id: string, @Body() user: UpdateUserDto): Promise<User> {
-    return this.usersService.updateUser(id, user);
+    const updatedUser = await this.usersService.updateUser(id, user);
+    if (!updatedUser) {
+      throw new NotFoundException(`User with id ${id} not found`);
+    }
+    return updatedUser;
   }
 
   @Put(':id/:deposit')
@@ -46,7 +59,11 @@ export class UsersController {
   }
 
   @Delete(':id')
-  delete(@Param('id') id: string) {
-    return this.usersService.deleteUser(id);
+  async delete(@Param('id') id: string) {
+    const deleted = await this.usersService.deleteUser(id);
+    if (!deleted) {
+      throw new NotFoundException(`User with ID ${id} not found`);
+    }
+    return { message: 'User deleted successfully' };
   }
 }

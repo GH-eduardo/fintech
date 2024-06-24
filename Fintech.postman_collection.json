@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"name\": \"pessoa3\",\r\n  \"email\": \"email@ab\", //não pode haver e-mail duplicado\r\n  \"password\": \"senha123\"\r\n}",
+					"raw": "{\r\n  \"name\": \"pessoa3\", //não pode ser vazio\r\n  \"email\": \"email@ab\", //não pode haver e-mail duplicado, verifica se tem @ e .algumacoisa\r\n  \"password\": \"senha123\" //mínimo de 6 caracteres\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
