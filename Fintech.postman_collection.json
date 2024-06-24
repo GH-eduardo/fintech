@@ -13,7 +13,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"name\": \"pessoa3\", //não pode ser vazio\r\n  \"email\": \"email@ab\", //não pode haver e-mail duplicado, verifica se tem @ e .algumacoisa\r\n  \"password\": \"senha123\" //mínimo de 6 caracteres\r\n}",
+					"raw": "{\r\n  \"name\": \"pessoa\", //não pode ser vazio\r\n  \"email\": \"email@abcd.com\", //não pode haver e-mail duplicado, verifica se tem @ e .algumacoisa\r\n  \"password\": \"senhaMaluca\" //mínimo de 6 caracteres\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
@@ -129,7 +129,7 @@
 				"method": "DELETE",
 				"header": [],
 				"url": {
-					"raw": "http://localhost:3000/users/6677279e4d52674d7996cd37",
+					"raw": "http://localhost:3000/users/6678a9de2506d01d3731840f",
 					"protocol": "http",
 					"host": [
 						"localhost"
@@ -137,7 +137,7 @@
 					"port": "3000",
 					"path": [
 						"users",
-						"6677279e4d52674d7996cd37"
+						"6678a9de2506d01d3731840f"
 					]
 				}
 			},
@@ -150,7 +150,7 @@
 				"header": [],
 				"body": {
 					"mode": "raw",
-					"raw": "{\r\n  \"userId\": \"6678a9de2506d01d3731840f\",\r\n  \"ticker\": \"Petro4\",\r\n  \"quantity\": 200,\r\n  \"price\": 10.50,\r\n  \"tradeType\": \"buy\"\r\n}",
+					"raw": "{\r\n  \"userId\": \"6678c03bf7ba2b27187d4c01\",\r\n  \"ticker\": \"ABEV3\", //não pode estar vazio\r\n  \"quantity\": 1, //inteira, > 0\r\n  \"price\": 1, // >= 0.01\r\n  \"tradeType\": \"buy\"\r\n}",
 					"options": {
 						"raw": {
 							"language": "json"
